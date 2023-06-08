@@ -10,16 +10,25 @@ namespace ToDo // Note: actual namespace depends on the project name.
             var pendiente = new List<Tarea>();
             var realizadas = new List<Tarea>();
             cargarAleatoriamente(pendiente);
-            
+            //Para ver si arga correctamente
+            // for (int i = 0; i < cantTarea; i++)
+            // {
+            //     Console.WriteLine("-->"+pendiente[i].Duracion);
+            // }
+            int opcion = 0;
+            do
+            {
+                
+            } while (opcion != 0);
         }
         private static void cargarAleatoriamente(List<Tarea> Lista){
-            var nuevaTarea = new Tarea();
             for (int i = 0; i < cantTarea; i++)
             {
+                var nuevaTarea = new Tarea();
                 nuevaTarea.TareaId = i;
                 nuevaTarea.Duracion = i*3+5;
-                nuevaTarea.Descripcion = "Desripicion"+ i;
-                Lista.Insert(0,nuevaTarea);            
+                nuevaTarea.Descripcion = "Desripicion "+ i;
+                Lista.Add(nuevaTarea);            
             }
         }
     }
