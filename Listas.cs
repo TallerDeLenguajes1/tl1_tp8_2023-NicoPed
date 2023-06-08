@@ -4,7 +4,7 @@
 //removeAt Toma un indice
 //son como quitar
 //find tarea = pendiente.Find(t => t.Id == 3)
-
+//con el true lo va concatenando
 namespace Tareas;
 
 public class Tarea
