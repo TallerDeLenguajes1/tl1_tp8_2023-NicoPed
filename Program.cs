@@ -3,7 +3,7 @@ namespace ToDo // Note: actual namespace depends on the project name.
 {
     internal class Program
     {
-        const int cantTarea = 5;
+        const int cantTarea = 7;
         static void Main(string[] args)
         {
             var pendientes = new List<Tarea>();
@@ -11,7 +11,7 @@ namespace ToDo // Note: actual namespace depends on the project name.
             cargarAleatoriamente(pendientes);
             int opcion = 0;
             string? buffer;
-            string? descripionBuscada;
+            string? descripcionBuscada;
             var tareaAux = new Tarea();
             //Interfaz para pedir
             do
@@ -33,8 +33,8 @@ namespace ToDo // Note: actual namespace depends on the project name.
                         mostrarLista(pendientes);
                         Console.WriteLine("--------------------");
                         Console.Write("Ingrese la descripcion de la clase a mover: ");
-                        descripionBuscada = Console.ReadLine(); 
-                        tareaAux = pendientes.Find(t => t.Descripcion == descripionBuscada);
+                        descripcionBuscada = Console.ReadLine(); 
+                        tareaAux = pendientes.Find(t => t.Descripcion == descripcionBuscada);
                         if (tareaAux != null)
                         {
                             realizadas.Add(tareaAux);
@@ -46,8 +46,8 @@ namespace ToDo // Note: actual namespace depends on the project name.
                         break;
                     case 2:
                         Console.Write("Ingrese para buscar un descripcion: ");
-                        descripionBuscada = Console.ReadLine(); 
-                        tareaAux = pendientes.Find(t => t.Descripcion == descripionBuscada);
+                        descripcionBuscada = Console.ReadLine(); 
+                        tareaAux = pendientes.Find(t => t.Descripcion == descripcionBuscada);
                         if (tareaAux != null)
                         {
                             Console.WriteLine("\n===== Tarea Enontrada =====");
@@ -71,7 +71,25 @@ namespace ToDo // Note: actual namespace depends on the project name.
             } while (opcion != 0);
 
             //PUNTO 4
+            string RutaArchivo = @"C:\Users\Nico Pedraza\Documents\TPs_TLI\Tps\tl1_tp8_2023-NicoPed\sumario.txt";
+            if (!File.Exists(RutaArchivo))
+            {
+                File.Create(RutaArchivo).Close();
+                
+            }
+            //FileStream Fstream = new FileStream(RutaArchivo, FileMode.Open);
             
+            int sumarioTareas = 0;
+            mostrarLista(realizadas);
+            using(StreamWriter writer = new StreamWriter(RutaArchivo)){
+                
+                foreach (var tarea in realizadas)
+                {
+                    writer.WriteLine($"---Tarea: {tarea.TareaId} --- duración: {tarea.Duracion}");
+                    sumarioTareas += tarea.Duracion;
+                }
+                writer.WriteLine("-------------------Total: "+sumarioTareas);
+            }
         }
         private static void cargarAleatoriamente(List<Tarea> lista){
             for (int i = 0; i < cantTarea; i++)
@@ -79,7 +97,7 @@ namespace ToDo // Note: actual namespace depends on the project name.
                 var nuevaTarea = new Tarea();
                 nuevaTarea.TareaId = i;
                 nuevaTarea.Duracion = i*3+5;
-                nuevaTarea.Descripcion = "Descripcion "+ i;
+                nuevaTarea.Descripcion = "D "+ i;
                 lista.Add(nuevaTarea);            
             }
         }
