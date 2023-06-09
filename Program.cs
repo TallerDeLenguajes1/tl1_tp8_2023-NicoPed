@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            string rutaDeCarpeta = @"C:\Users\Nico Pedraza\Documents\TPs_TLI\carpetaPrueba";
+            string rutaDeCarpeta = @"C:\Users\Nico Pedraza\Documents\Facultad\Tercer_Año\Modulo5\Taller_De_Lenguajes_I\2022\Teoría";
             if (Directory.Exists(rutaDeCarpeta))
             {
                 List<string> archivos = Directory.GetFiles(rutaDeCarpeta).ToList();
@@ -15,7 +15,7 @@
             string rutaArchivoCSV = Path.Combine(rutaDeCarpeta, "index.csv");
             if (!File.Exists(rutaArchivoCSV))
             {
-                File.Create(rutaArchivoCSV);
+                File.Create(rutaArchivoCSV).Close();
             }
             using (StreamWriter writer = new StreamWriter(rutaArchivoCSV)){
                 writer.WriteLine("indice;nombre;extension");
