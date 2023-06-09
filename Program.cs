@@ -1,5 +1,4 @@
-﻿using System;
-using Tareas;
+﻿using Tareas;
 namespace ToDo // Note: actual namespace depends on the project name.
 {
     internal class Program
@@ -32,6 +31,18 @@ namespace ToDo // Note: actual namespace depends on the project name.
                 {
                     case 1: 
                         mostrarLista(pendientes);
+                        Console.WriteLine("--------------------");
+                        Console.Write("Ingrese la descripcion de la clase a mover: ");
+                        descripionBuscada = Console.ReadLine(); 
+                        tareaAux = pendientes.Find(t => t.Descripcion == descripionBuscada);
+                        if (tareaAux != null)
+                        {
+                            realizadas.Add(tareaAux);
+                            pendientes.Remove(tareaAux);
+                        }else
+                        {
+                            Console.WriteLine("\n===== Tarea NO Enontrada =====");
+                        }
                         break;
                     case 2:
                         Console.Write("Ingrese para buscar un descripcion: ");
@@ -59,6 +70,8 @@ namespace ToDo // Note: actual namespace depends on the project name.
                 }    
             } while (opcion != 0);
 
+            //PUNTO 4
+            
         }
         private static void cargarAleatoriamente(List<Tarea> lista){
             for (int i = 0; i < cantTarea; i++)
@@ -66,7 +79,7 @@ namespace ToDo // Note: actual namespace depends on the project name.
                 var nuevaTarea = new Tarea();
                 nuevaTarea.TareaId = i;
                 nuevaTarea.Duracion = i*3+5;
-                nuevaTarea.Descripcion = "Desripicion "+ i;
+                nuevaTarea.Descripcion = "Descripcion "+ i;
                 lista.Add(nuevaTarea);            
             }
         }
