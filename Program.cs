@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            string rutaDeCarpeta = @"C:\Users\Nico Pedraza\Documents\Facultad\Tercer_Año\Modulo5\Taller_De_Lenguajes_I\2022\Teoría";
+            string rutaDeCarpeta = @"C:\Users\Nico Pedraza\Documents\TPs_TLI\carpetaPrueba";
             if (Directory.Exists(rutaDeCarpeta))
             {
                 List<string> archivos = Directory.GetFiles(rutaDeCarpeta).ToList();
